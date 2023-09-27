@@ -2,28 +2,34 @@ import db from "../database/db.js";
 
 import { DataTypes } from "sequelize";
 
-const AddedProductsModel = db.define('PRODUCTOS_AGREGADOS', {
+const AddedProductsModel = db.define('ADDED_PRODUCTS', {
 
-    id_cotizacion: {
+    id_quotation: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
         autoIncrement: false,
-        field: "ID_COTIZACION"
+        field: "id_quote"
     },
-    id_producto: {
+    id_product: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
         autoIncrement: false,
-        field: "ID_PRODUCTO"
+        field: "id_product"
     },
-    cantidad_producto: {
+    id_workshop: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        field: "CANTIDAD_PRODUCTO"
+        primaryKey: true,
+        field: "id_workshop"
+    },
+    quantity_products: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        field: "quantity_products"
     }
 
-}, {primaryKey: ['id_cotizacion', 'id_producto']})
+}, {primaryKey: ['id_quotation', 'id_product', 'id_workshop']})
 
 export default AddedProductsModel

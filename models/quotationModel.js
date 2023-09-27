@@ -2,51 +2,47 @@ import db from "../database/db.js";
 import { DataTypes } from "sequelize";
 import ClientModel from "./clientModel.js";
 
-const QuotationModel = db.define('COTIZACIONES', {
+const quotationModel = db.define('MARKET_RATES', {
 
-    id_cliente: {
+    id_client: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        primaryKey: true,
-        autoIncrement: false,
-        field: "ID_CLIENTE"
+        field: "id_customer"
     },
-    id_cotizacion: {
+    id_market_rates: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
-        field: "ID_COTIZACION"
+        field: "id_quote"
     },
-    numero_cotizacion: {
+    number_quote: {
         type: DataTypes.STRING,
         allowNull: true,
-        field: "NUMERO_COTIZACION"
+        field: "number_quote"
     },
-
-    fecha_cotizacion: {
+    date_quote: {
         type: DataTypes.DATE,
         allowNull: false,
-        field: "FECHA_COTIZACION"
+        field: "date_quote"
     },
-
-    subtotal: {
+    subtotal_quote: {
         type: DataTypes.FLOAT,
         allowNull: false,
-        field: "SUBTOTAL"
+        field: "subtotal_quote"
     },
-    total: {
+    total_quote: {
         type: DataTypes.FLOAT,
         allowNull: false,
-        field: "TOTAL"
+        field: "total_quote"
     },
-    estado_cotizacion: {
+    status_quote: {
         type: DataTypes.STRING,
         allowNull: false,
-        field: "ESTADO_COTIZACION"
+        field: "status_quote"
     }
 
 })
 
 
-export default QuotationModel
+export default quotationModel

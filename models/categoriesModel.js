@@ -2,21 +2,21 @@ import db from "../database/db.js";
 
 import { DataTypes } from "sequelize";
 
-const CategoriesModel = db.define('CATEGORIAS', {
+const categoriesModel = db.define('CATEGORY', {
 
-    id_categoria: {
+    id_categorie: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
-        field: "ID_CATEGORIA"
+        field: "id_category"
     },
-    nombre_categoria: {
+    name_categorie: {
         type: DataTypes.STRING,
         allowNull: false,
-        field: "NOMBRE_CATEGORIA"
+        field: "name_category"
     }
 
 })
 
-export default CategoriesModel
+export default categoriesModel

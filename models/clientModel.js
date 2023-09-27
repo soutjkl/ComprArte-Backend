@@ -2,54 +2,52 @@ import db from "../database/db.js";
 import { DataTypes } from "sequelize";
 import QuotationModel from "./quotationModel.js";
 
-const ClientModel = db.define('CLIENTES', {
+const clientModel = db.define('CUSTOMER', {
 
-    id_cliente: {
+    id_customer: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
-        field: "ID_CLIENTE"
+        field: "id_customer"
     },
-    nombres_cliente: {
+    name_customer: {
         type: DataTypes.STRING,
         allowNull: false,
-        field: "NOMBRES_CLIENTE"
+        field: "name_customer"
     },
-    apellidos_cliente: {
+    lastname_customer: {
         type: DataTypes.STRING,
         allowNull: false,
-        field: "APELLIDOS_CLIENTE"
+        field: "lastname_customer"
     },
-
-    tipo_documento: {
+    document_type: {
         type: DataTypes.STRING,
         allowNull: false,
-        field: "TIPO_DOCUMENTO"
+        field: "document_type"
     },
-
-    numero_documento: {
+    number_document: {
         type: DataTypes.STRING,
         allowNull: false,
-        field: "NUMERO_DOCUMENTO"
+        field: "number_document"
     },
-    telefono: {
+    number_phone: {
         type: DataTypes.STRING,
         allowNull: false,
-        field: "TELEFONO"
+        field: "number_phone"
     },
-    email: {
+    email_customer: {
         type: DataTypes.STRING,
         allowNull: false,
-        field: "EMAIL"
+        field: "email_customer"
     },
-    estado_cliente: {
+    status_customer: {
         type: DataTypes.STRING,
         allowNull: false,
-        field: "ESTADO_CLIENTE"
+        field: "status_customer"
     }
 
 })
 
 
-export default ClientModel;
+export default clientModel;

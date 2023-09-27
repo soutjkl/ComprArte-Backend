@@ -2,62 +2,56 @@ import db from "../database/db.js";
 
 import { DataTypes } from "sequelize";
 
-const ProductModel = db.define('PRODUCTOS', {
+const productModel = db.define('PRODUCT', {
 
     id_product: {
 		type: DataTypes.INTEGER,
 		allowNull: false,
 		primaryKey: true,
 		autoIncrement: true,
-        field: "ID_PRODUCTO"
+        field: "id_product"
 	},
-    categoria:{
+    id_categorie:{
         type: DataTypes.INTEGER,
 		allowNull: true,			
-        field: "ID_CATEGORIA"
+        field: "id_category"
     },
-
-    nombre_producto:{
+    name_product:{
         type: DataTypes.STRING,
 		allowNull: false,		
-        field: "NOMBRE_PRODUCTO"
+        field: "name_product"
     },
-
-    descripcion :{
+    description_product :{
         type: DataTypes.STRING,
 		allowNull: true,		
-        field: "DESCRIPCION"
+        field: "description_product"
     },
-    cantidad:{
+    quantity:{
         type: DataTypes.INTEGER,
 		allowNull: false,		
-        field: "CANTIDAD"
+        field: "quantity"
     },
-   
-    referencia_producto:{
+    product_reference:{
         type: DataTypes.STRING,
 		allowNull: false,		
-        field: "REFERENCIA_PRODUCTO"
+        field: "product_reference"
     },
-
-    precio_unitario:{
+    unit_price:{
         type: DataTypes.FLOAT,
 		allowNull: false,		
-        field: "PRECIO_UNITARIO"  
+        field: "unit_price"  
     },
-    
-    imagen_producto:{
+    product_picture:{
         type: DataTypes.STRING,
 		allowNull: true,		
-        field: "IMAGEN_PRODUCTO"
+        field: "product_picture"
     },
-    
-    estado:{
+    product_state:{
         type: DataTypes.CHAR,
 		allowNull: false,		
-        field: "ESTADO_PRODUCTO"
+        field: "status_product"
     }
     
 })
 
-export default ProductModel
+export default productModel

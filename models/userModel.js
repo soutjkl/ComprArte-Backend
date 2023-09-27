@@ -1,34 +1,38 @@
 import db from "../database/db.js";
 import { DataTypes } from "sequelize";
 
-const userModel = db.define('USER', {
+const userModel = db.define('MY_USER', {
 //Creacion del esquema de usuarios para la base de datos
-    email: {
+    email_user: {
 		type: DataTypes.STRING,
 		allowNull: false,
 		primaryKey: true,
-		autoIncrement: true,
-        field: "EMAIL"
+        field: "email_user"
 	},
-    name:{
+    user_name:{
         type: DataTypes.STRING,
 		allowNull: false,		
-        field: "NAME"
+        field: "user_name"
     },
-    lastname:{
+    user_lastname:{
         type: DataTypes.STRING,
 		allowNull: false,		
-        field: "LASTNAME"
+        field: "user_lastname"
     },    
-    password:{
+    user_password:{
         type: DataTypes.STRING,
 		allowNull: false,		
-        field: "PASSWORD"
+        field: "user_password"
     },
-    rol:{
+    user_rol:{
         type: DataTypes.STRING,
 		allowNull: false,		
-        field: "ROL"
+        field: "user_rol"
+    }, 
+    status_user:{
+        type: DataTypes.STRING,
+        allowNull: false,		
+        field: "status_user"
     }
 })
 
