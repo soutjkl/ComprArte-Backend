@@ -40,9 +40,13 @@ const quotationModel = db.define('MARKET_RATES', {
         type: DataTypes.STRING,
         allowNull: false,
         field: "status_quote"
+    },
+    email_user: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        field: "email_user"
     }
 
 })
-
 
 export default quotationModel
