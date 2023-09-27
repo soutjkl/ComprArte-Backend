@@ -1,8 +1,8 @@
-import userModel from "../models/userModel.js";
-import bcrypt from "bcryptjs";
+const express = require('express');
+const bcrypt = require('bcryptjs');
 
 // Metodo getAllUser extrae todos los usuarios de la base de datos
-export const getAllUsers = async (req, res) => {
+exports.getAllUsers = async (req, res) => {
   try {
     const users = await userModel.findAll();
     res.json(users);
@@ -12,7 +12,7 @@ export const getAllUsers = async (req, res) => {
 };
 
 // Metodo extrae un usuario por el email
-export const getUser = async (req, res) => {
+exports.getUser = async (req, res) => {
   try {
     const user = await userModel.findAll({
       where: {
@@ -26,7 +26,7 @@ export const getUser = async (req, res) => {
 };
 
 // Metodo que crea un usuario en la base de datos
-export const createUser = async (req, res) => {
+exports.createUser = async (req, res) => {
   const saltRounds = 10;
   const plainPassword = req.body.user_password;
   try {
@@ -43,7 +43,7 @@ export const createUser = async (req, res) => {
 };
 
 // Metodo que actualiza el usuario
-export const updateUser = async (req, res) => {
+exports.updateUser = async (req, res) => {
   try {
     const plainPassword = req.body.user_password; // Obtén la contraseña sin encriptar del cuerpo de la solicitud
     if (plainPassword) {
@@ -61,7 +61,7 @@ export const updateUser = async (req, res) => {
 };
 
 // Metodo que elimina un usuario de la base de datos
-export const deleteUser = async (req, res) => {
+exports.deleteUser = async (req, res) => {
   try {
     await userModel.destroy({
       where: { email_user: req.params.email_user },

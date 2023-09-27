@@ -1,8 +1,7 @@
-import  express from "express";
-import { getGoogleToken } from "../controllers/autenticationDrive.js";
-import { getAllUsers, getUser,createUser,updateUser,deleteUser} from "../controllers/userController.js"
-import { getAllCategories, getCategory, createCategory,updateCategory, deleteCategory } from "../controllers/categoriesController.js";
-
+const express = require('express');
+const { createCategory, getAllCategories, deleteCategory, getCategory, updateCategory} = require("../controllers/categoriesController")
+const {getAllUsers, getUser, createUser, updateUser, deleteUser} = require("../controllers/userController")
+const {getGoogleToken} = require("../controllers/autenticationDrive")
 const router = express.Router()
 
 // Ruta Token Google
@@ -22,5 +21,5 @@ router.post('/categories/new-categories',createCategory)
 router.put('/categories/update/:id',updateCategory)
 router.put('/delete-categories/:id', deleteCategory)
 
-export default router 
+module.exports = router; 
 

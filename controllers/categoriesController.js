@@ -1,7 +1,6 @@
-import CategoriesModel from "../models/categoriesModel.js"
+const CategoriesModel = require("../models/categoriesModel")
 
-
-export const getAllCategories = async (req, res) => {
+exports.getAllCategories = async (req, res) => {
     try {
         const categories = await CategoriesModel.findAll({
             order: [['createdAt', 'DESC']]
@@ -12,7 +11,7 @@ export const getAllCategories = async (req, res) => {
     }
 }
 
-export const getCategory = async (req, res) => {
+exports. getCategory = async (req, res) => {
     try {
         const category = await CategoriesModel.findAll({
             where: {
@@ -25,7 +24,7 @@ export const getCategory = async (req, res) => {
     }
 }
 
-export const createCategory = async (req, res) =>{
+exports.createCategory = async (req, res) =>{
     try {
         await CategoriesModel.create(req.body)
         res.json({"message": "Categoria creada con éxito"})
@@ -34,7 +33,7 @@ export const createCategory = async (req, res) =>{
     }
 }
 
-export const updateCategory = async (req, res)=>{
+exports.updateCategory = async (req, res)=>{
     try {
         await CategoriesModel.update(req.body,{
             where: {id_categoria: req.params.id}
@@ -46,7 +45,7 @@ export const updateCategory = async (req, res)=>{
 }
 
 // Metodo que elimina un categoria de la base de datos
-export const deleteCategory = async (req, res) => {
+exports.deleteCategory = async (req, res) => {
     try {
         await CategoriesModel.destroy({
             where: {id_categoria: req.params.id}

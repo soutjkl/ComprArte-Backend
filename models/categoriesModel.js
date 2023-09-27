@@ -1,6 +1,5 @@
-import db from "../database/db.js";
-
-import { DataTypes } from "sequelize";
+const db = require("../database/db")
+const { DataTypes } = require("sequelize")
 
 const categoriesModel = db.define('CATEGORY', {
 
@@ -19,4 +18,4 @@ const categoriesModel = db.define('CATEGORY', {
 
 })
 
-export default categoriesModel
+module.exports = categoriesModel;

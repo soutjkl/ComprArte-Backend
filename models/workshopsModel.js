@@ -1,5 +1,5 @@
-import db from "../database/db.js"; 
-import { DataTypes } from "sequelize";
+const db = require("../database/db")
+const { DataTypes } = require("sequelize")
 
 const workshopsModel = db.define('WORKSHOP', {
 //Creacion del esquema de talleres para la base de datos
@@ -48,5 +48,5 @@ const workshopsModel = db.define('WORKSHOP', {
  
 })
     
-export default workshopsModel
+module.exports =  workshopsModel
     

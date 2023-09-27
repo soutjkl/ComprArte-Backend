@@ -1,5 +1,5 @@
-import db from "../database/db.js";
-import { DataTypes } from "sequelize";
+const db = require("../database/db")
+const { DataTypes } = require("sequelize")
 import QuotationModel from "./quotationModel.js";
 
 const clientModel = db.define('CUSTOMER', {
@@ -50,4 +50,4 @@ const clientModel = db.define('CUSTOMER', {
 })
 
 
-export default clientModel;
+module.exports =  clientModel;

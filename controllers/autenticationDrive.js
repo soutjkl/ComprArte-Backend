@@ -1,5 +1,5 @@
-import { google } from "googleapis";
-import { Readable } from "stream";
+const { google } = require("googleapis");
+const { Readable } = require("stream");
 
 // Carga las credenciales desde el archivo JSON
 const credentials = {
@@ -30,7 +30,7 @@ const auth = new google.auth.GoogleAuth({
 });
 const folderId = "1eH8qG-U4PKqjBCanTddR3Pbt4btGWPyw";
 
-export const getGoogleToken = async (req, res) => {
+exports.getGoogleToken = async (req, res) => {
 
   try {
     const authorizedClient = await auth.getClient();
@@ -42,7 +42,7 @@ export const getGoogleToken = async (req, res) => {
 
 }
 
-export const fileUrl = async (req) => {
+exports.fileUrl = async (req) => {
   return new Promise((resolve, reject) => {
     const drive = google.drive({ version: "v3", auth });
     const base64Content = req.body.imagen_producto;

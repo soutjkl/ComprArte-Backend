@@ -1,6 +1,5 @@
-import db from "../database/db.js";
-import { DataTypes } from "sequelize";
-
+const db = require("../database/db")
+const { DataTypes } = require("sequelize")
 const userModel = db.define('MY_USER', {
 //Creacion del esquema de usuarios para la base de datos
     email_user: {
@@ -36,4 +35,4 @@ const userModel = db.define('MY_USER', {
     }
 })
 
-export default userModel
+module.exports =  userModel
