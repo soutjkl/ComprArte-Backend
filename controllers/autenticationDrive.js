@@ -40,9 +40,7 @@ export const getGoogleToken = async (req, res) => {
     res.status(403).json({message: 'no fue posible obtener el token de acceso'})
   }
 
-
 }
-
 
 export const fileUrl = async (req) => {
   return new Promise((resolve, reject) => {
