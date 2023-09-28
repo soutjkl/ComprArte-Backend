@@ -1,5 +1,6 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 // Metodo getAllUser extrae todos los usuarios de la base de datos
 exports.getAllUsers = async (req, res) => {
