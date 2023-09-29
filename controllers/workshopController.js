@@ -1,5 +1,5 @@
 // controllers/workshopController.js
-import Workshop from "../models/Workshop.js";
+const Workshop = require("../models/Workshop")
 
 // Create a new workshop
 export const createWorkshop = async (req, res) => {

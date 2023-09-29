@@ -1,7 +1,6 @@
-import {Products, Categories} from "../database/indexDB.js"
-import { Op } from "sequelize";
-
-import { fileUrl } from "./autenticationDrive.js";
+const {Products, Categories} = require("../database/indexDB.js")
+const { Op } = require("sequelize")
+const { fileUrl } = require("./autenticationDrive.js")
 
 export const getAllProducts = async (req, res) => {
   try {
