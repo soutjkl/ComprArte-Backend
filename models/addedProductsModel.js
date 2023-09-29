@@ -1,7 +1,5 @@
-import db from "../database/db.js";
-
-import { DataTypes } from "sequelize";
-
+const db = require("../database/db")
+const { DataTypes } = require("sequelize")
 const AddedProductsModel = db.define('ADDED_PRODUCTS', {
 
     id_quotation: {
@@ -32,4 +30,4 @@ const AddedProductsModel = db.define('ADDED_PRODUCTS', {
 
 }, {primaryKey: ['id_quotation', 'id_product', 'id_workshop']})
 
-export default AddedProductsModel
+module.exports = AddedProductsModel

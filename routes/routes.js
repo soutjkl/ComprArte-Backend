@@ -2,6 +2,8 @@ const express = require('express');
 const { createCategory, getAllCategories, deleteCategory, getCategory, updateCategory} = require("../controllers/categoriesController")
 const {getAllUsers, getUser, createUser, updateUser, deleteUser} = require("../controllers/userController")
 const {getGoogleToken} = require("../controllers/autenticationDrive")
+const { createQuote, getAllQuotes, printQuote, sendEmailQuote } = require("../controllers/quotationController.js");
+
 const router = express.Router()
 
 // Ruta Token Google
@@ -20,6 +22,12 @@ router.get('/categories/:id', getCategory)
 router.post('/categories/new-categories',createCategory)
 router.put('/categories/update/:id',updateCategory)
 router.put('/delete-categories/:id', deleteCategory)
+
+// Rutas Cotizaciones
+router.get('/quotesAll', getAllQuotes)
+router.post('/quotes/print', printQuote)
+router.post('/quotes/sendEmail', sendEmailQuote)
+router.post('/quotes/newQuote', createQuote)
 
 module.exports = router; 
 

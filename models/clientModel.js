@@ -1,6 +1,6 @@
 const db = require("../database/db")
 const { DataTypes } = require("sequelize")
-import QuotationModel from "./quotationModel.js";
+const QuotationModel = require("./quotationModel.js")
 
 const clientModel = db.define('CUSTOMER', {
 

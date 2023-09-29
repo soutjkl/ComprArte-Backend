@@ -1,8 +1,8 @@
-import Products from '../models/productModel'
-import Categories  from '../models/categoriesModel.js'
-import Quotes  from '../models/quotationModel.js'
-import Clients  from '../models/clientModel.js'
-import AddedProducts  from '../models/addedProductsModel.js'
+const Products = require('../models/productModel.js')
+const Quotes = require('../models/quotationModel.js')
+const Categories = require('../models/categoriesModel.js')
+const Clients = require('../models/clientModel.js')
+const AddedProducts = require('../models/addedProductsModel.js')
 
 Products.belongsTo(Categories, {foreignKey: "id_category", as:'associated_category'});
 Categories.hasMany(Products,{foreignKey: "id_category"});
@@ -16,7 +16,7 @@ Quotes.hasMany(AddedProducts,{foreignKey: "id_quotation",sourceKey: 'id_quotatio
 AddedProducts.belongsTo(Products, {foreignKey: "id_product"})
 Products.hasMany(AddedProducts,{foreignKey: "id_product"});
 
-export {
+module.exports = {
     Products, 
     Categories,
     Quotes,
