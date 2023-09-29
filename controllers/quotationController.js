@@ -89,7 +89,7 @@ function convertPDFtoBase64(path) {
     return base64;
 }
 
-export const generatePDFQuotation = async (req) => {
+exports.generatePDFQuotation = async (req) => {
     return new Promise(async (resolve, reject) => {
         const html = fs.readFileSync("controllers/template.html", "utf8");
         const bitmap = fs.readFileSync("assets/logo.jpg");
@@ -130,7 +130,7 @@ export const generatePDFQuotation = async (req) => {
 }
 
 
-export const getAllQuotes = async (req, res) => {
+exports.getAllQuotes = async (req, res) => {
     try {
         const quotes = await Quotes.findAll({
             include: [Clients, AddedProducts]
@@ -142,7 +142,7 @@ export const getAllQuotes = async (req, res) => {
     }
 }
 
-export const getQuote = async (req, res) => {
+exports.getQuote = async (req, res) => {
     try {
         const quotation = await Quotes.findAll({
             include: [Clients, AddedProducts],
@@ -175,7 +175,7 @@ const makeCotizationInsert = async (req) => {
 
 }
 
-export const createQuote = async (req, res) => {
+exports.createQuote = async (req, res) => {
     const actualDate = new Date();
     const formatDate = actualDate.toISOString().slice(0, 19).replace('T', ' ');
     try {
@@ -209,7 +209,7 @@ export const createQuote = async (req, res) => {
     }
 }
 
-export const printQuote = async (req,res) =>{
+exports.printQuote = async (req,res) =>{
     try {
         const quotationDocument = await generatePDFQuotation(req)
         res.json({ "message": "Documento generado con éxito", base64: quotationDocument })
@@ -218,7 +218,7 @@ export const printQuote = async (req,res) =>{
     }
 }
 
-export const sendEmailQuote = async (req,res) =>{
+exports.sendEmailQuote = async (req,res) =>{
     const quotationDocument = await generatePDFQuotation(req)
     if (quotationDocument) {
             try {
@@ -237,7 +237,7 @@ export const sendEmailQuote = async (req,res) =>{
         }
 }
 
-export const updateClient = async (req, res) => {
+exports.updateClient = async (req, res) => {
     try {
 
         await addedProductsModel.update(req.body, {

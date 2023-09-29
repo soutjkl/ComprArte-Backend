@@ -1,6 +1,6 @@
 const db = require("../database/db")
 const { DataTypes } = require("sequelize")
-import ClientModel from "./clientModel.js";
+const ClientModel = require("./clientModel.js")
 
 const quotationModel = db.define('MARKET_RATES', {
 
