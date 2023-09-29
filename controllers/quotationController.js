@@ -1,8 +1,8 @@
-import {Quotes, Clients, AddedProducts} from "../database/indexDB.js"
-import pdf from 'pdf-creator-node';
-import fs from 'fs';
-import nodemailer from 'nodemailer'
-import handlebars  from 'handlebars'
+const {Quotes, Clients, AddedProducts} = require("../database/indexDB.js"); 
+const pdf =  require('pdf-creator-node');
+const fs = require('fs');
+const nodemailer = require('nodemailer');
+const handlebars  = require('handlebars');
 
 // Configurar el transporte de correo electrónico
 const transporter = nodemailer.createTransport({

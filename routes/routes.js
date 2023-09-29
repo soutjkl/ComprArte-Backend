@@ -2,7 +2,7 @@ const express = require('express');
 const { createCategory, getAllCategories, deleteCategory, getCategory, updateCategory} = require("../controllers/categoriesController")
 const {getAllUsers, getUser, createUser, updateUser, deleteUser} = require("../controllers/userController")
 const {getGoogleToken} = require("../controllers/autenticationDrive")
-import { createQuote, getAllQuotes, printQuote, sendEmailQuote } from "../controllers/quotationController.js";
+const { createQuote, getAllQuotes, printQuote, sendEmailQuote } = require("../controllers/quotationController.js");
 
 const router = express.Router()
 
