@@ -46,7 +46,6 @@ const quotationModel = db.define('MARKET_RATES', {
         allowNull: false,
         field: "email_user"
     }
-
 })
 
 module.exports =   quotationModel
