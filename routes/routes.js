@@ -21,5 +21,22 @@ router.post('/categories/new-categories',createCategory)
 router.put('/categories/update/:id',updateCategory)
 router.put('/delete-categories/:id', deleteCategory)
 
+//Rutas Productos
+router.get('/AllProducts', getAllProducts)
+router.get('/Product/:id', getProduct)
+router.get('/ProductByCategory/:category', getProductByCategory)
+router.get('/searchProduct/:product', searchProduct)
+router.post('/Product/:', createProduct)
+router.put('/Product/update/:id',updateProduct)
+router.put('/StateProduct/:id', changeStateProduct)
+router.put('/delete-Product/:id', deleteProduct)
+
+//Rutas Talleres
+router.post('/createWorkshop/:',createWorkshop)
+router.get('/AllWorkshops',getAllWorkshops)
+router.get('/WorkshopById/:id', getWorkshopById)
+router.put('/WorkshopById/:id', updateWorkshopById)
+router.put('/WorkshopById/:id', deleteWorkshopById)
+
 module.exports = router; 
 
