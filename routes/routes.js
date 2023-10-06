@@ -29,5 +29,21 @@ router.post('/quotes/print', printQuote)
 router.post('/quotes/sendEmail', sendEmailQuote)
 router.post('/quotes/newQuote', createQuote)
 
+//Rutas Productos
+router.get('/product', getAllProducts)
+router.get('/product/:id', getProduct)
+router.post('/createProduct',createProduct)
+router.put('/update/:id',updateProduct)
+router.put('/state/:id',changeStateProduct)
+router.post('/searchProducts',searchProduct)
+router.put('/delete-product/:id',deleteProduct)
+
+//Rutas Talleres
+router.post('/createWorkshop/:',createWorkshop)
+router.get('/AllWorkshops',getAllWorkshops)
+router.get('/WorkshopById/:id', getWorkshopById)
+router.put('/WorkshopById/:id', updateWorkshopById)
+router.put('/WorkshopById/:id', deleteWorkshopById)
+
 module.exports = router; 
 
