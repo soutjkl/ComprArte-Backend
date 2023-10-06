@@ -1,5 +1,6 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 // Metodo getAllUser extrae todos los usuarios de la base de datos
 exports.getAllUsers = async (req, res) => {
@@ -69,5 +70,31 @@ exports.deleteUser = async (req, res) => {
     res.json({ message: "Usuario eliminado con éxito" });
   } catch (error) {
     res.json({ message: error.message });
+  }
+};
+
+// Metodo de login
+exports.logIn = async (req, res) => {
+  const { email, password } = req.body;
+  const saltRounds = 10;
+  try {
+    const user = await UserModel.findAll({ where: {
+      email: email,
+    }, });
+    if (!user) {
+      return res.status(401).json({ message: "Credenciales inválidas" });
+    }
+    // const hashedPassword = await bcrypt.hash(password, saltRounds);
+    const passwordMatch = await bcrypt.compare(password, user[0].password );
+    const rol = user[0].rol
+    if (!passwordMatch) {
+      return res.status(401).json({ message: "Credenciales inválidas" });
+    }
+    const token = jwt.sign({ userId: user._id }, "secret_key", {
+      expiresIn: "1h",
+    });
+    return res.status(200).json({ token, rol});
+  } catch (error) {
+    return res.status(500).json({ message: "Error en el servidor" });
   }
 };
