@@ -47,6 +47,6 @@ const clientModel = db.define('customer', {
         field: "status_customer"
     }
 
-}, {freezeTableName: true}, {timestamps: false})
+}, {freezeTableName: true, timestamps: false})
 
 module.exports =  clientModel;

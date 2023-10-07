@@ -29,6 +29,6 @@ const AddedProductsModel = db.define('added_products', {
         field: "quantity_products"
     }
 
-}, {primaryKey: ['id_quotation', 'id_product', 'id_workshop']}, {freezeTableName: true}, {timestamps: false})
+}, {primaryKey: ['id_quotation', 'id_product', 'id_workshop'], freezeTableName: true, timestamps: false})
 
 module.exports = AddedProductsModel

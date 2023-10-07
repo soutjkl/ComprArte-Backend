@@ -60,13 +60,16 @@ exports.updateClient = async (req, res)=>{
     }
 }
 
-exports.changeStateClient = async (req, res)=>{
+exports.changeStateClient = async (req, res) => {
     try {
-        await ClientModel.update(req.body,{
-            where: {id_customer: req.params.id}
-        })
-        res.json({"message": "Estado del cliente actualizado con éxito"})
+        await ClientModel.update(
+            { status_customer: req.body.status_customer },
+            {
+                where: { id_customer: req.params.id }
+            }
+        );
+        res.json({ message: "Estado del cliente actualizado con éxito" });
     } catch (error) {
-        res.json({ message: error.message })
+        res.json({ message: error.message });
     }
 }

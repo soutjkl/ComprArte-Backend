@@ -46,6 +46,6 @@ const workshopsModel = db.define('workshop', {
         field: "user_email"
     }
 
-}, {freezeTableName: true}, {timestamps: false})
+}, {freezeTableName: true, timestamps: false})
 
 module.exports = workshopsModel

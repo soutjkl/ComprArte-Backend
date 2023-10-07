@@ -27,7 +27,7 @@ router.get('/product', getAllProducts)
 router.get('/product/:id', getProduct)
 router.post('/createProduct',createProduct)
 router.put('/update/:id',updateProduct)
-router.put('/state/:id',changeStateProduct)
+router.patch('/state/:id',changeStateProduct)
 router.post('/searchProducts',searchProduct)
 router.delete('/delete-product/:id',deleteProduct)
 
@@ -37,7 +37,7 @@ router.get('/clients/:id', getClient)
 router.post('/clients/search', getClientByDocument)
 router.post('/clients/new-client',createClient)
 router.put('/clients/update/:id',updateClient)
-router.put('/clients/update-state/:id',changeStateClient)
+router.patch('/clients/update-state/:id',changeStateClient)
 
 // Rutas Categorias
 router.get('/categoriesAll', getAllCategories)

@@ -128,11 +128,11 @@ CREATE TABLE IF NOT EXISTS `tdr-cotization-manager`.`workshop` (
   `capacity_workshop` INT NULL DEFAULT NULL,
   `date_workshop` DATE NOT NULL,
   `status_workshop` VARCHAR(2) NOT NULL,
-  `user_email` VARCHAR(60) NULL DEFAULT NULL,
+  `email_user` VARCHAR(60) NULL DEFAULT NULL,
   PRIMARY KEY (`id_workshop`),
-  INDEX `user_email` (`user_email` ASC) VISIBLE,
+  INDEX `email_user` (`email_user` ASC) VISIBLE,
   CONSTRAINT `workshop_ibfk_1`
-    FOREIGN KEY (`user_email`)
+    FOREIGN KEY (`email_user`)
     REFERENCES `tdr-cotization-manager`.`my_user` (`email_user`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4

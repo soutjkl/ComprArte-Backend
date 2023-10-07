@@ -46,6 +46,6 @@ const quotationModel = db.define('market_rates', {
         allowNull: false,
         field: "email_user"
     }
-}, {freezeTableName: true}, {timestamps: false})
+}, {freezeTableName: true, timestamps: false})
 
 module.exports = quotationModel

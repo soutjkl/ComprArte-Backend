@@ -131,7 +131,7 @@ exports.generatePDFQuotation = async (req) => {
 exports.getAllQuotes = async (req, res) => {
     try {
         const quotes = await MarketRates.findAll({
-            include: [Customer, AddedProducts]
+            include: [{model:Customer, as: 'customer_data'}, AddedProducts]
         })
         res.json(quotes)
     } catch (error) {
@@ -143,7 +143,7 @@ exports.getAllQuotes = async (req, res) => {
 exports.getQuote = async (req, res) => {
     try {
         const quotation = await MarketRates.findAll({
-            include: [Customer, AddedProducts],
+            include: [{model:Customer, as: 'customer_data'}, AddedProducts],
             where: {
                 id: req.params.id
             }

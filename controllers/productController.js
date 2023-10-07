@@ -44,7 +44,7 @@ exports.getProductByCategory = async (req, res) => {
 exports.searchProduct = async (req, res ) => {
     try {
         const foundProducts = await Product.findAll({
-          include:[{model:Category, as: 'categoriaAsociada'}],
+          include:[{model:Category, as: 'categoryAssociated'}],
             where:{
                 [Op.or]: [
                     {name_product: {[Op.like]: `%${req.body.stringToSearch}%`}},
@@ -98,12 +98,21 @@ exports.updateProduct = async (req, res) => {
 
 exports.changeStateProduct = async (req, res) => {
   try {
-    await Product.update(req.body, {
-      where: { id_product: req.params.id },
-    });
-    res.json({ message: "Estado del producto actualizado con éxito" });
+    const { status_product } = req.body;
+    if (status_product !== undefined) {
+      // Actualiza solo el estado del producto
+      await Product.update(
+        { status_product },
+        {
+          where: { id_product: req.params.id },
+        }
+      );
+      res.json({ message: "Estado del producto actualizado con éxito" });
+    } else {
+      res.status(400).json({ message: "El campo 'status_product' es requerido" });
+    }
   } catch (error) {
-    res.json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
