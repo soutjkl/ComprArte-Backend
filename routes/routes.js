@@ -20,7 +20,7 @@ router.get('/userAll',getAllUsers)
 router.get('/user/:email',getUser)
 router.post('/userCreate',createUser)
 router.put('/user/:email',updateUser)
-router.put('/delete/:email',deleteUser)
+router.delete('/delete/:email',deleteUser)
 
 //Rutas Productos
 router.get('/product', getAllProducts)
@@ -29,7 +29,7 @@ router.post('/createProduct',createProduct)
 router.put('/update/:id',updateProduct)
 router.put('/state/:id',changeStateProduct)
 router.post('/searchProducts',searchProduct)
-router.put('/delete-product/:id',deleteProduct)
+router.delete('/delete-product/:id',deleteProduct)
 
 // Rutas Clientes
 router.get('/cients', getAllClients)
@@ -44,7 +44,7 @@ router.get('/categoriesAll', getAllCategories)
 router.get('/categories/:id', getCategory)
 router.post('/categories/new-categories',createCategory)
 router.put('/categories/update/:id',updateCategory)
-router.put('/delete-categories/:id', deleteCategory)
+router.delete('/delete-categories/:id', deleteCategory)
 
 // Rutas Cotizaciones
 router.get('/quotesAll', getAllQuotes)
@@ -57,7 +57,7 @@ router.post('/createWorkshop/:',createWorkshop)
 router.get('/AllWorkshops',getAllWorkshops)
 router.get('/WorkshopById/:id', getWorkshopById)
 router.put('/WorkshopById/:id', updateWorkshopById)
-router.put('/WorkshopById/:id', deleteWorkshopById)
+router.delete('/WorkshopById/:id', deleteWorkshopById)
 
 module.exports = router; 
 

@@ -1,12 +1,12 @@
-const {Products, Categories} = require("../database/indexDB.js")
+const {Product, Category} = require("../database/indexDB.js")
 const { Op } = require("sequelize")
 const { fileUrl } = require("./autenticationDrive.js")
 
 exports.getAllProducts = async (req, res) => {
   try {
-    const products = await Products.findAll({
-      include: [{model:Categories, as: 'categoriaAsociada'}],
-      order: [['createdAt', 'DESC']]
+    const products = await Product.findAll({
+      include: [{model:Category, as: 'categoryAssociated'}],
+      order: [['id_category', 'DESC']]
     }
       );
     res.json(products);
@@ -17,7 +17,7 @@ exports.getAllProducts = async (req, res) => {
 
 exports.getProduct = async (req, res) => {
   try {
-    const product = await Products.findAll({
+    const product = await Product.findAll({
       where: {
         id_product: req.params.id,
       },
@@ -30,9 +30,9 @@ exports.getProduct = async (req, res) => {
 
 exports.getProductByCategory = async (req, res) => {
   try {
-    const products = await Products.findAll({
+    const products = await Product.findAll({
       where: {
-        id_categorie: req.params.id_category,
+        id_category: req.params.id,
       },
     });
     res.json(products);
@@ -41,11 +41,10 @@ exports.getProductByCategory = async (req, res) => {
   }
 };
 
-
 exports.searchProduct = async (req, res ) => {
     try {
-        const foundProducts = await Products.findAll({
-          include:[{model:Categories, as: 'categoriaAsociada'}],
+        const foundProducts = await Product.findAll({
+          include:[{model:Category, as: 'categoriaAsociada'}],
             where:{
                 [Op.or]: [
                     {name_product: {[Op.like]: `%${req.body.stringToSearch}%`}},
@@ -69,7 +68,7 @@ exports.createProduct = async (req, res) => {
       }else{
         req.body.product_picture = 'https://drive.google.com/uc?id=1hIWa3QsBVlAeAzKO9rcYKi_z_BDJ812I&export=download'
       }
-      await Products.create(req.body);
+      await Product.create(req.body);
       res.json({ message: "Producto creado con éxito" });
 
     } else {
@@ -88,7 +87,7 @@ exports.updateProduct = async (req, res) => {
     delete req.body.product_picture
   }
   try {
-    await Products.update(req.body, {
+    await Product.update(req.body, {
       where: { id_product: req.params.id },
     });
     res.json({ message: "Producto actualizado con éxito" });
@@ -99,7 +98,7 @@ exports.updateProduct = async (req, res) => {
 
 exports.changeStateProduct = async (req, res) => {
   try {
-    await Products.update(req.body, {
+    await Product.update(req.body, {
       where: { id_product: req.params.id },
     });
     res.json({ message: "Estado del producto actualizado con éxito" });
@@ -111,10 +110,10 @@ exports.changeStateProduct = async (req, res) => {
 // Metodo que elimina un producto de la base de datos
 exports.deleteProduct = async (req, res) => {
   try {
-      await Products.destroy({
+      await Product.destroy({
           where: {id_product: req.params.id}
       })
-      res.json({"message": "Product eliminado con éxito"});
+      res.json({"message": "Producto eliminado con éxito"});
   } catch (error) {
       res.json({ message: error.message });
   }

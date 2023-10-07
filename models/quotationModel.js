@@ -4,12 +4,12 @@ const ClientModel = require("./clientModel.js")
 
 const quotationModel = db.define('market_rates', {
 
-    id_client: {
+    id_customer: {
         type: DataTypes.INTEGER,
         allowNull: false,
         field: "id_customer"
     },
-    id_market_rates: {
+    id_quote: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
@@ -46,6 +46,6 @@ const quotationModel = db.define('market_rates', {
         allowNull: false,
         field: "email_user"
     }
-})
+}, {freezeTableName: true}, {timestamps: false})
 
 module.exports = quotationModel

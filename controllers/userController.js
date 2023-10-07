@@ -1,6 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const userModel = require('../models/userModel');
 
 // Metodo getAllUser extrae todos los usuarios de la base de datos
 exports.getAllUsers = async (req, res) => {
@@ -75,17 +76,17 @@ exports.deleteUser = async (req, res) => {
 
 // Metodo de login
 exports.logIn = async (req, res) => {
-  const { email, password } = req.body;
+  const { email_user, user_password } = req.body;
   const saltRounds = 10;
   try {
     const user = await UserModel.findAll({ where: {
-      email: email,
+      email_user: email_user,
     }, });
     if (!user) {
       return res.status(401).json({ message: "Credenciales inválidas" });
     }
     // const hashedPassword = await bcrypt.hash(password, saltRounds);
-    const passwordMatch = await bcrypt.compare(password, user[0].password );
+    const passwordMatch = await bcrypt.compare(user_password, user[0].user_password );
     const rol = user[0].rol
     if (!passwordMatch) {
       return res.status(401).json({ message: "Credenciales inválidas" });

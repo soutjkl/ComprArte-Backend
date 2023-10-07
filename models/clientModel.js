@@ -2,7 +2,7 @@ const db = require("../database/db")
 const { DataTypes } = require("sequelize")
 const QuotationModel = require("./quotationModel.js")
 
-const clientModel = db.define('CUSTOMER', {
+const clientModel = db.define('customer', {
 
     id_customer: {
         type: DataTypes.INTEGER,
@@ -47,6 +47,6 @@ const clientModel = db.define('CUSTOMER', {
         field: "status_customer"
     }
 
-})
+}, {freezeTableName: true}, {timestamps: false})
 
 module.exports =  clientModel;

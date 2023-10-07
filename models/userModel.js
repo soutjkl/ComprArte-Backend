@@ -1,7 +1,7 @@
 const db = require("../database/db")
 const { DataTypes } = require("sequelize")
 
-const userModel = db.define('MY_USER', {
+const userModel = db.define('my_user', {
 //Creacion del esquema de usuarios para la base de datos
     email_user: {
 		type: DataTypes.STRING,
@@ -34,6 +34,6 @@ const userModel = db.define('MY_USER', {
         allowNull: false,		
         field: "status_user"
     }
-})
+}, {freezeTableName: true, timestamps: false})
 
 module.exports =  userModel

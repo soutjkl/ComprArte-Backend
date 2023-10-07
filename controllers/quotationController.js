@@ -1,8 +1,9 @@
-const {Quotes, Clients, AddedProducts} = require("../database/indexDB.js"); 
+const {MarketRates, Customer, AddedProducts} = require("../database/indexDB.js"); 
 const pdf =  require('pdf-creator-node');
 const fs = require('fs');
 const nodemailer = require('nodemailer');
 const handlebars  = require('handlebars');
+const AddedProductsModel = require("../models/addedProductsModel.js");
 
 // Configurar el transporte de correo electrónico
 const transporter = nodemailer.createTransport({
@@ -60,24 +61,22 @@ function formatPrices(data) {
         return ({
             product: {
                 id_product: prod.product.id_product,
-                id_categorie: prod.product.id_categorie,
+                id_category: prod.product.id_category,
                 name_product: prod.product.name_product,
                 description_product: prod.product.description_product,
                 quantity: prod.product.quantity,
                 product_reference: prod.product.product_reference,
                 unit_price: prod.product.unit_price.toLocaleString('es-CO'),
                 product_picture: prod.product.product_picture,
-                product_state: prod.product.product_state,
-                createdAt: prod.product.createdAt,
-                updatedAt: prod.product.updatedAt,
+                status_product: prod.product.status_product,
             },
             quantity: prod.quantity,
-            subtotal: prod.subtotal.toLocaleString('es-CO')
+            subtotal_quote: prod.subtotal_quote.toLocaleString('es-CO')
         }
         )
     })
     quotationData.products = newProducts
-    quotationData.total = quotationData.total.toLocaleString('es-CO')
+    quotationData.total_quote = quotationData.total_quote.toLocaleString('es-CO')
     return quotationData
 }
 
@@ -129,11 +128,10 @@ exports.generatePDFQuotation = async (req) => {
     })
 }
 
-
 exports.getAllQuotes = async (req, res) => {
     try {
-        const quotes = await Quotes.findAll({
-            include: [Clients, AddedProducts]
+        const quotes = await MarketRates.findAll({
+            include: [Customer, AddedProducts]
         })
         res.json(quotes)
     } catch (error) {
@@ -144,8 +142,8 @@ exports.getAllQuotes = async (req, res) => {
 
 exports.getQuote = async (req, res) => {
     try {
-        const quotation = await Quotes.findAll({
-            include: [Clients, AddedProducts],
+        const quotation = await MarketRates.findAll({
+            include: [Customer, AddedProducts],
             where: {
                 id: req.params.id
             }
@@ -159,8 +157,8 @@ exports.getQuote = async (req, res) => {
 const makeCotizationInsert = async (req) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const newQuotation = await Quotes.create({
-                id_client: req.clientSearch[0].id_cliente,
+            const newQuotation = await MarketRates.create({
+                id_customer: req.clientSearch[0].id_customer,
                 date_quote: req.formatDate,
                 subtotal_quote: req.req.body.subtotal,
                 total_quote: req.req.body.total,
@@ -179,7 +177,7 @@ exports.createQuote = async (req, res) => {
     const actualDate = new Date();
     const formatDate = actualDate.toISOString().slice(0, 19).replace('T', ' ');
     try {
-        const client = await Clients.findAll({
+        const client = await Customer.findAll({
             where: {
                 number_document: req.body.client.number_document,
                 name_customer: req.body.client.name_customer,
@@ -240,7 +238,7 @@ exports.sendEmailQuote = async (req,res) =>{
 exports.updateClient = async (req, res) => {
     try {
 
-        await addedProductsModel.update(req.body, {
+        await AddedProductsModel.update(req.body, {
             where: { id: req.params.id }
         })
         res.json({ "message": "Cliente actualizado con éxito" })

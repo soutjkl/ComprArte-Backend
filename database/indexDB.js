@@ -17,7 +17,7 @@ Customer.hasMany(MarketRates, { foreignKey: 'id_customer' });
 MarketRates.belongsTo(MyUser, { foreignKey: 'email_user' });
 MyUser.hasMany(MarketRates, { foreignKey: 'email_user' });
 
-Product.belongsTo(Category, { foreignKey: 'id_category' });
+Product.belongsTo(Category, { foreignKey: 'id_category', as: 'categoryAssociated' });
 Category.hasMany(Product, { foreignKey: 'id_category' });
 
 AddedProducts.belongsTo(MarketRates, { foreignKey: 'id_quote' });

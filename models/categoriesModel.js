@@ -1,7 +1,7 @@
-const db = require("../database/db")
-const { DataTypes } = require("sequelize")
+const db = require("../database/db");
+const { DataTypes } = require("sequelize");
 
-const categoriesModel = db.define('CATEGORY', {
+const categoriesModel = db.define('category', {
 
     id_category: {
         type: DataTypes.INTEGER,
@@ -16,6 +16,9 @@ const categoriesModel = db.define('CATEGORY', {
         field: "name_category"
     }
 
-})
+}, {
+    freezeTableName: true,
+    timestamps: false // Aquí debes poner las opciones juntas en un solo objeto
+});
 
 module.exports = categoriesModel;

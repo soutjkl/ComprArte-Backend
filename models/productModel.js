@@ -1,7 +1,7 @@
 const db = require("../database/db")
 const { DataTypes } = require("sequelize")
 
-const productModel = db.define('PRODUCT', {
+const productModel = db.define('product', {
 
     id_product: {
 		type: DataTypes.INTEGER,
@@ -10,7 +10,7 @@ const productModel = db.define('PRODUCT', {
 		autoIncrement: true,
         field: "id_product"
 	},
-    id_categorie:{
+    id_category:{
         type: DataTypes.INTEGER,
 		allowNull: true,			
         field: "id_category"
@@ -45,12 +45,12 @@ const productModel = db.define('PRODUCT', {
 		allowNull: true,		
         field: "product_picture"
     },
-    product_state:{
+    status_product:{
         type: DataTypes.CHAR,
 		allowNull: false,		
         field: "status_product"
     }
     
-})
+}, {freezeTableName: true, timestamps: false})
 
 module.exports =  productModel

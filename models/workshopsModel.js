@@ -1,7 +1,7 @@
 const db = require("../database/db.js"); 
 const { DataTypes } = require("sequelize");
 
-const workshopsModel = db.define('WORKSHOP', {
+const workshopsModel = db.define('workshop', {
 //Creacion del esquema de talleres para la base de datos
     id_workshop: {
         type: DataTypes.INTEGER,
@@ -46,6 +46,6 @@ const workshopsModel = db.define('WORKSHOP', {
         field: "user_email"
     }
 
-})
+}, {freezeTableName: true}, {timestamps: false})
 
 module.exports = workshopsModel

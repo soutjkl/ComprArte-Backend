@@ -1,7 +1,7 @@
 const db = require("../database/db")
 const { DataTypes } = require("sequelize")
 
-const AddedProductsModel = db.define('ADDED_PRODUCTS', {
+const AddedProductsModel = db.define('added_products', {
 
     id_quote: {
         type: DataTypes.INTEGER,
@@ -29,6 +29,6 @@ const AddedProductsModel = db.define('ADDED_PRODUCTS', {
         field: "quantity_products"
     }
 
-}, {primaryKey: ['id_quotation', 'id_product', 'id_workshop']})
+}, {primaryKey: ['id_quotation', 'id_product', 'id_workshop']}, {freezeTableName: true}, {timestamps: false})
 
 module.exports = AddedProductsModel
