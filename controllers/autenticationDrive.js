@@ -45,8 +45,8 @@ exports.getGoogleToken = async (req, res) => {
 exports.fileUrl = async (req) => {
   return new Promise((resolve, reject) => {
     const drive = google.drive({ version: "v3", auth });
-    const base64Content = req.body.imagen_producto;
-    const fileName = req.body.nombre_producto;
+    const base64Content = req.body.product_picture;
+    const fileName = req.body.name_product;
     const fileMetadata = {
       name: fileName,
       parents: [folderId],

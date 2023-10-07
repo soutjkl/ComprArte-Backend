@@ -1,8 +1,8 @@
 // controllers/workshopController.js
-const Workshop = require("../models/Workshop")
+const Workshop = require("../models/workshopsModel")
 
 // Create a new workshop
-export const createWorkshop = async (req, res) => {
+exports.createWorkshop = async (req, res) => {
   try {
     const workshop = await Workshop.create(req.body);
     return res.status(201).json(workshop);
@@ -12,7 +12,7 @@ export const createWorkshop = async (req, res) => {
 };
 
 // Retrieve all workshops
-export const getAllWorkshops = async (req, res) => {
+exports.getAllWorkshops = async (req, res) => {
   try {
     const workshops = await Workshop.findAll();
     return res.status(200).json(workshops);
@@ -22,7 +22,7 @@ export const getAllWorkshops = async (req, res) => {
 };
 
 // Retrieve a workshop by ID
-export const getWorkshopById = async (req, res) => {
+exports.getWorkshopById = async (req, res) => {
   const { id } = req.params;
   try {
     const workshop = await Workshop.findByPk(id);
@@ -36,7 +36,7 @@ export const getWorkshopById = async (req, res) => {
 };
 
 // Update a workshop by ID
-export const updateWorkshopById = async (req, res) => {
+exports.updateWorkshopById = async (req, res) => {
   const { id } = req.params;
   try {
     const [updated] = await Workshop.update(req.body, {
@@ -53,7 +53,7 @@ export const updateWorkshopById = async (req, res) => {
 };
 
 // Delete a workshop by ID
-export const deleteWorkshopById = async (req, res) => {
+exports.deleteWorkshopById = async (req, res) => {
   const { id } = req.params;
   try {
     const deleted = await Workshop.destroy({

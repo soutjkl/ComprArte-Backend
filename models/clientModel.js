@@ -49,5 +49,4 @@ const clientModel = db.define('CUSTOMER', {
 
 })
 
-
 module.exports =  clientModel;

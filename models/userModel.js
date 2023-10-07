@@ -1,5 +1,6 @@
 const db = require("../database/db")
 const { DataTypes } = require("sequelize")
+
 const userModel = db.define('MY_USER', {
 //Creacion del esquema de usuarios para la base de datos
     email_user: {

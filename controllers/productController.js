@@ -2,7 +2,7 @@ const {Products, Categories} = require("../database/indexDB.js")
 const { Op } = require("sequelize")
 const { fileUrl } = require("./autenticationDrive.js")
 
-export const getAllProducts = async (req, res) => {
+exports.getAllProducts = async (req, res) => {
   try {
     const products = await Products.findAll({
       include: [{model:Categories, as: 'categoriaAsociada'}],
@@ -15,7 +15,7 @@ export const getAllProducts = async (req, res) => {
   }
 };
 
-export const getProduct = async (req, res) => {
+exports.getProduct = async (req, res) => {
   try {
     const product = await Products.findAll({
       where: {
@@ -28,11 +28,11 @@ export const getProduct = async (req, res) => {
   }
 };
 
-export const getProductByCategory = async (req, res) => {
+exports.getProductByCategory = async (req, res) => {
   try {
     const products = await Products.findAll({
       where: {
-        categoria: req.params.id_categoria,
+        id_categorie: req.params.id_category,
       },
     });
     res.json(products);
@@ -42,14 +42,14 @@ export const getProductByCategory = async (req, res) => {
 };
 
 
-export const searchProduct = async (req, res ) => {
+exports.searchProduct = async (req, res ) => {
     try {
         const foundProducts = await Products.findAll({
           include:[{model:Categories, as: 'categoriaAsociada'}],
             where:{
                 [Op.or]: [
-                    {nombre_producto: {[Op.like]: `%${req.body.stringToSearch}%`}},
-                    {descripcion: {[Op.like]: `%${req.body.stringToSearch}%`}}
+                    {name_product: {[Op.like]: `%${req.body.stringToSearch}%`}},
+                    {description_product: {[Op.like]: `%${req.body.stringToSearch}%`}}
                 ]
             }
         })
@@ -59,15 +59,15 @@ export const searchProduct = async (req, res ) => {
     }
 }
 
-export const createProduct = async (req, res) => {
+exports.createProduct = async (req, res) => {
   const file = await fileUrl(req);
   try {
     if (file) {
       console.log("IMAGEN QUE LLEGA", req)
-      if(req.body.imagen_producto !== ''){
-        req.body.imagen_producto = file;
+      if(req.body.product_picture !== ''){
+        req.body.product_picture = file;
       }else{
-        req.body.imagen_producto = 'https://drive.google.com/uc?id=1hIWa3QsBVlAeAzKO9rcYKi_z_BDJ812I&export=download'
+        req.body.product_picture = 'https://drive.google.com/uc?id=1hIWa3QsBVlAeAzKO9rcYKi_z_BDJ812I&export=download'
       }
       await Products.create(req.body);
       res.json({ message: "Producto creado con éxito" });
@@ -80,12 +80,12 @@ export const createProduct = async (req, res) => {
   }
 };
 
-export const updateProduct = async (req, res) => {
-  if(req.body.imagen_producto !== ''){
+exports.updateProduct = async (req, res) => {
+  if(req.body.product_picture !== ''){
     const file = await fileUrl(req);
-    req.body.imagen_producto = file;
+    req.body.product_picture = file;
   }else{
-    delete req.body.imagen_producto
+    delete req.body.product_picture
   }
   try {
     await Products.update(req.body, {
@@ -97,7 +97,7 @@ export const updateProduct = async (req, res) => {
   }
 };
 
-export const changeStateProduct = async (req, res) => {
+exports.changeStateProduct = async (req, res) => {
   try {
     await Products.update(req.body, {
       where: { id_product: req.params.id },
@@ -109,7 +109,7 @@ export const changeStateProduct = async (req, res) => {
 };
 
 // Metodo que elimina un producto de la base de datos
-export const deleteProduct = async (req, res) => {
+exports.deleteProduct = async (req, res) => {
   try {
       await Products.destroy({
           where: {id_product: req.params.id}

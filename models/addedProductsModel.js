@@ -1,8 +1,9 @@
 const db = require("../database/db")
 const { DataTypes } = require("sequelize")
+
 const AddedProductsModel = db.define('ADDED_PRODUCTS', {
 
-    id_quotation: {
+    id_quote: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,

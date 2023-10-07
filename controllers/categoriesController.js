@@ -15,7 +15,7 @@ exports. getCategory = async (req, res) => {
     try {
         const category = await CategoriesModel.findAll({
             where: {
-                id_categoria: req.params.id
+                id_category: req.params.id
             }
         })
         res.json(category[0])
@@ -36,7 +36,7 @@ exports.createCategory = async (req, res) =>{
 exports.updateCategory = async (req, res)=>{
     try {
         await CategoriesModel.update(req.body,{
-            where: {id_categoria: req.params.id}
+            where: {id_category: req.params.id}
         })
         res.json({"message": "Categoria actualizada con éxito"})
     } catch (error) {
@@ -48,7 +48,7 @@ exports.updateCategory = async (req, res)=>{
 exports.deleteCategory = async (req, res) => {
     try {
         await CategoriesModel.destroy({
-            where: {id_categoria: req.params.id}
+            where: {id_category: req.params.id}
         })
         res.json({"message": "Product eliminado con éxito"});
     } catch (error) {

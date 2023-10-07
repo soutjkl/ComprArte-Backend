@@ -2,7 +2,7 @@ const db = require("../database/db")
 const { DataTypes } = require("sequelize")
 const ClientModel = require("./clientModel.js")
 
-const quotationModel = db.define('MARKET_RATES', {
+const quotationModel = db.define('market_rates', {
 
     id_client: {
         type: DataTypes.INTEGER,
@@ -48,4 +48,4 @@ const quotationModel = db.define('MARKET_RATES', {
     }
 })
 
-module.exports =   quotationModel
+module.exports = quotationModel
