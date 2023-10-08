@@ -1,6 +1,5 @@
 const db = require("../database/db")
 const { DataTypes } = require("sequelize")
-const ClientModel = require("./clientModel.js")
 
 const quotationModel = db.define('market_rates', {
 

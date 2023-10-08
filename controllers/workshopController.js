@@ -5,9 +5,9 @@ const Workshop = require("../models/workshopsModel")
 exports.createWorkshop = async (req, res) => {
   try {
     const workshop = await Workshop.create(req.body);
-    return res.status(201).json(workshop);
+    return res.json({ message: "Taller creado con éxito" });
   } catch (error) {
-    return res.status(400).json({ error: "Failed to create workshop" });
+    return res.status(400).json({ error: "Fallo al crear un nuevo taller" });
   }
 };
 
@@ -17,7 +17,7 @@ exports.getAllWorkshops = async (req, res) => {
     const workshops = await Workshop.findAll();
     return res.status(200).json(workshops);
   } catch (error) {
-    return res.status(500).json({ error: "Internal server error" });
+    res.json({ message: error.message });
   }
 };
 
@@ -27,11 +27,11 @@ exports.getWorkshopById = async (req, res) => {
   try {
     const workshop = await Workshop.findByPk(id);
     if (!workshop) {
-      return res.status(404).json({ error: "Workshop not found" });
+      return res.status(404).json({ error: "Taller no encontrado" });
     }
     return res.status(200).json(workshop);
   } catch (error) {
-    return res.status(500).json({ error: "Internal server error" });
+    return res.status(500).json({ error: "Error de Servidor" });
   }
 };
 
@@ -43,12 +43,11 @@ exports.updateWorkshopById = async (req, res) => {
       where: { id_workshop: id },
     });
     if (updated) {
-      const updatedWorkshop = await Workshop.findByPk(id);
-      return res.status(200).json(updatedWorkshop);
+      return res.json({ message: "Taller actualizado exitosamente" });
     }
-    return res.status(404).json({ error: "Workshop not found" });
+    return res.status(404).json({ error: "Taller no encontrado" });
   } catch (error) {
-    return res.status(500).json({ error: "Internal server error" });
+    return res.status(500).json({ error: "Error de Servidor" });
   }
 };
 
@@ -60,10 +59,10 @@ exports.deleteWorkshopById = async (req, res) => {
       where: { id_workshop: id },
     });
     if (deleted) {
-      return res.status(204).send();
+      return res.json({ message: "Taller eliminado exitosamente" });
     }
-    return res.status(404).json({ error: "Workshop not found" });
+    return res.status(404).json({ error: "Taller no encontrado" });
   } catch (error) {
-    return res.status(500).json({ error: "Internal server error" });
+    return res.status(500).json({ error: "Error de Servidor" });
   }
 };

@@ -40,10 +40,10 @@ const workshopsModel = db.define('workshop', {
         allowNull: false,		
         field: "status_workshop"
     },
-    user_email:{
+    email_user:{
         type: DataTypes.STRING,
         allowNull: true,		
-        field: "user_email"
+        field: "email_user"
     }
 
 }, {freezeTableName: true, timestamps: false})

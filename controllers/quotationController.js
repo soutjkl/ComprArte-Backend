@@ -1,3 +1,4 @@
+const clientModel = require("../models/clientModel.js");
 const {MarketRates, Customer, AddedProducts} = require("../database/indexDB.js"); 
 const pdf =  require('pdf-creator-node');
 const fs = require('fs');
@@ -160,8 +161,8 @@ const makeCotizationInsert = async (req) => {
             const newQuotation = await MarketRates.create({
                 id_customer: req.clientSearch[0].id_customer,
                 date_quote: req.formatDate,
-                subtotal_quote: req.req.body.subtotal,
-                total_quote: req.req.body.total,
+                subtotal_quote: req.req.body.subtotal_quote,
+                total_quote: req.req.body.total_quote,
                 status_quote: 'C'
             })
             resolve(newQuotation)
@@ -177,7 +178,7 @@ exports.createQuote = async (req, res) => {
     const actualDate = new Date();
     const formatDate = actualDate.toISOString().slice(0, 19).replace('T', ' ');
     try {
-        const client = await Customer.findAll({
+        const client = await clientModel.findAll({
             where: {
                 number_document: req.body.client.number_document,
                 name_customer: req.body.client.name_customer,
@@ -192,9 +193,9 @@ exports.createQuote = async (req, res) => {
         if (newQuotation) {
             const poductsAdded = req.body.products.map(async (prod) => {
                 return await AddedProducts.create({
-                    id_quotation: newQuotation.id_quotation,
+                    id_quote: newQuotation.id_quote,
                     id_product: prod.product.id_product,
-                    quantity_products: prod.quantity_products
+                    quantity: prod.quantity
                 })
             })
             res.json({ "message": "Cotización registrada con éxito", "quotation_num": newQuotation.id })
