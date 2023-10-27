@@ -122,6 +122,7 @@ exports.logIn = async (req, res) => {
 
     return res.status(200).json({ token, rol });
   } catch (error) {
+    
     console.error("Error en logIn:", error);
     return res.status(500).json({ message: "Error en el servidor", error: error.message });
   }

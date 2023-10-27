@@ -10,8 +10,8 @@ const AddedProductsModel = require("../models/addedProductsModel.js");
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'trabajo.comprarte@gmail.com',
-        pass: 'AsdfghjkL_1234'
+        user: 'consultasbodegatodoraquira@gmail.com',
+        pass: 'gopyilcepuqwahyd'
     }
 });
 
@@ -30,9 +30,9 @@ const sendEmail = async (body) => {
             const compiledHtml = template({ data:formatPrices(body.data) });
           
             const emailOptions = {
-                from: 'trabajo.comprarte@gmail.com',
-                to: body.data.client.email_customer,
-                subject: 'Tu cotizacion - ComprArte',
+                from: 'consultasbodegatodoraquira@gmail.com',
+                to: body.data.client.email,
+                subject: 'Tu cotizacion - TodoRáquira',
                 html: compiledHtml,
                 attachments: [
                     {
