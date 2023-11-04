@@ -106,5 +106,8 @@ dist
 # Config DB files
 database/db.js
 
+# Config node version
+.nvmrc
+
 package-lock.js
 node_modules
