@@ -103,8 +103,7 @@ dist
 # TernJS port file
 .tern-port
 
-# Config DB files
-database/db.js
+
 
 # Config node version
 .nvmrc
